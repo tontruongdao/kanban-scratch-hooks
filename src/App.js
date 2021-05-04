@@ -23,7 +23,20 @@ const App = () => {
     bgcolor:"lightgreen"  
   }])
 
+// ##### Helpers
 
+
+const initializeStatus =  
+tasks.forEach((task) => {
+  status[task.category].push(
+    <div 
+      key={task.name}
+      className="draggable"
+      style={{backgroundColor: task.bgcolor}}
+      draggable>
+    </div>
+  )
+})
 
   return (
     <div className='container-kanban'>
