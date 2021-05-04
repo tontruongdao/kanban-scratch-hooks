@@ -10,7 +10,7 @@ const App = () => {
 
   // ##### React States
   const [tasks, setTasks] = useState([{
-    name:"Learn Angular",             
+    name:"Angular",             
     category:"wip",              
     bgcolor: "salmon"},
     {
@@ -34,6 +34,21 @@ const onDragStart = (event, name) => {
 }
 
 
+const onDrop = (event, cat) => {
+  let name = event.dataTransfer.getData("name");
+
+  let newTask = tasks.find((task) => task.name === name)
+  let newTaskIndex = tasks.findIndex((task) => task.name === name)
+  newTask.category = cat
+  console.log(newTask, newTaskIndex)
+
+  const newArr = [...tasks]
+  newArr[newTaskIndex] = newTask
+  // console.log(newArr)
+  setTasks(newArr)
+}
+
+
 const initializeStatus =  
 tasks.forEach((task) => {
   status[task.category].push(
@@ -48,18 +63,21 @@ tasks.forEach((task) => {
   )
 })
 
+
   return (
     <div className="container-kanban">
       <h1>Kanban Demo</h1>
       <div 
         className="wip"
-        onDragOver={(e) => onDragOver(e)}>
+        onDragOver={(e) => onDragOver(e)}
+        onDrop={(e) => onDrop(e, "wip")}>
         <span className="task-header">WIP</span>
         {status.wip}
       </div>
       <div 
         className="droppable"
-        onDragOver={(e) => onDragOver(e)}>
+        onDragOver={(e) => onDragOver(e)}
+        onDrop={(e) => onDrop(e, "complete")}>
         <span className="task-header">COMPLETED</span>
         {status.complete}
       </div>
