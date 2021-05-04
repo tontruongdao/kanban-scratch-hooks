@@ -24,6 +24,9 @@ const App = () => {
   }])
 
 // ##### Helpers
+const onDragOver = (event) => {
+  event.preventDefault();
+}
 
 
 const initializeStatus =  
@@ -34,13 +37,26 @@ tasks.forEach((task) => {
       className="draggable"
       style={{backgroundColor: task.bgcolor}}
       draggable>
+      {task.name}
     </div>
   )
 })
 
   return (
-    <div className='container-kanban'>
-      KANBAN DEMO
+    <div className="container-kanban">
+      <h1>Kanban Demo</h1>
+      <div 
+        className="wip"
+        onDragOver={(e) => onDragOver(e)}>
+        <span className="task-header">WIP</span>
+        {status.wip}
+      </div>
+      <div 
+        className="droppable"
+        onDragOver={(e) => onDragOver(e)}>
+        <span className="task-header">COMPLETED</span>
+        {status.complete}
+      </div>
     </div>
   )
 }
