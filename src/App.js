@@ -29,6 +29,11 @@ const onDragOver = (event) => {
 }
 
 
+const onDragStart = (event, name) => {
+  event.dataTransfer.setData("name", name);
+}
+
+
 const initializeStatus =  
 tasks.forEach((task) => {
   status[task.category].push(
@@ -36,7 +41,8 @@ tasks.forEach((task) => {
       key={task.name}
       className="draggable"
       style={{backgroundColor: task.bgcolor}}
-      draggable>
+      draggable
+      onDragStart ={(e) => onDragStart(e, task.name)}>
       {task.name}
     </div>
   )
