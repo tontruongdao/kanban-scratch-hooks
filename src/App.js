@@ -24,14 +24,14 @@ const App = () => {
   }])
 
 // ##### Helpers
-const onDragOver = (event) => {
-  event.preventDefault();
-}
+  const onDragOver = (event) => {
+    event.preventDefault();
+  }
 
 
-const onDragStart = (event, name) => {
-  event.dataTransfer.setData("name", name);
-}
+  const onDragStart = (event, name) => {
+    event.dataTransfer.setData("name", name);
+  }
 
 
 const onDrop = (event, cat) => {
@@ -49,19 +49,19 @@ const onDrop = (event, cat) => {
 }
 
 
-const initializeStatus =  
-tasks.forEach((task) => {
-  status[task.category].push(
-    <div 
-      key={task.name}
-      className="draggable"
-      style={{backgroundColor: task.bgcolor}}
-      draggable
-      onDragStart ={(e) => onDragStart(e, task.name)}>
-      {task.name}
-    </div>
-  )
-})
+  const initializeStatus =  
+  tasks.forEach((task) => {
+    status[task.category].push(
+      <div 
+        key={task.name}
+        className="draggable"
+        style={{backgroundColor: task.bgcolor}}
+        draggable
+        onDragStart ={(e) => onDragStart(e, task.name)}>
+        {task.name}
+      </div>
+    )
+  })
 
 
   return (
